@@ -15,3 +15,5 @@ jobs:
     steps:
       - name: Usar template o action reutilizable
         uses: pparram/loteria-devops-resources/.github/actions/helpers/hello-world@main
+        with:
+          comentario: 'Se imprimio el comentario'
