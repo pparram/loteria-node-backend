@@ -15,16 +15,22 @@ jobs:
         node-version: [16.x]
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+
+      - name : Setup Node.js desde action
+        uses: pparram/loteria-devops-resources/.github/actions/build/build-node-express@main
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+      
+      # - name: Setup Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: 'npm'
 
-      - name: Run de instalacion
-        run: |
-          npm install
-          npm run build
+      # - name: Run de instalacion
+      #   run: |
+      #     npm install
+      #     npm run build
 
       - name: Upload build artefact
         uses: actions/upload-artifact@v4
