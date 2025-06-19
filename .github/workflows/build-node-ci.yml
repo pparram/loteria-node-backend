@@ -38,3 +38,24 @@ jobs:
           name: ${{ github.run_id }}
           path: dist/
           retention-days: 14
+  deploy:
+    name: Dummy Deploy
+    needs: build
+    runs-on: ubuntu-tatest
+    environment:
+      name: node-backend-dev
+      url: https://www.google.com
+
+    steps:
+      - name: Descarga artefacto
+        uses: actions/dowload-artifact@v4
+        with:
+          name: ${{ github.run_id }}
+
+      - name: Imprimir variables de entorno
+        run: |
+          echo "Secret VAR: ${{ secrets.SECRET_KEY }}"
+          echo "Environment VAR: ${{ vars.SITE_URL }}"
+
+
+      
